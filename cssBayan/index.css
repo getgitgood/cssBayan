@@ -177,7 +177,7 @@ h1 {
     font-size: 0.6em;
   }
 }
-  
+
 @media only screen and (min-height : 820px) {
   h1 {
     font-size: 1.5em;
