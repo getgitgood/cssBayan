@@ -69,7 +69,7 @@ h1 {
 .accordion__trigger-title {
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  padding: 1em;
 }
 
 .accordion-item__input:checked ~ .accordion__trigger > img {
