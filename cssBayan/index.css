@@ -1,0 +1,63 @@
+html, body {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 70%;
+}
+
+h1 {
+  text-align: center;
+}
+
+.accordion {
+  width: 50%;
+}
+
+.accordion-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.accordion-item__input {
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+
+.accordion:hover {
+  height: 100%;
+}
+
+.accordion-item__input:checked ~ .accordion-content img {
+  height: inherit;
+}
+
+.accordion-item__input:hover ~ .accordion-content img {
+  height: inherit;
+}
+
+.accordion__trigger {
+  width: 100%;
+  border-bottom: 0.1em solid black;
+}
+
+.accordion-content {
+  border: 0.1em solid black;
+  border-top: 0;
+  border-bottom: 0;
+}
+.accordion-content img {
+  height: 0;
+}
+
+.accordion-content:hover img {
+  height: inherit;
+}
