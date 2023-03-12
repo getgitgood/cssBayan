@@ -3,14 +3,20 @@ html, body {
 }
 
 .container {
+  margin: 0 auto;
   display: flex;
+  max-width: 50%;
+  max-height: 50%;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 img {
   display: block;
   margin: 0 auto;
   max-width: 70%;
+  transition: all 0.5 ease;
 }
 
 h1 {
@@ -23,41 +29,78 @@ h1 {
 
 .accordion-item {
   display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: all 0.8s ease-in-out;
 }
 
 .accordion-item__input {
   visibility: hidden;
-  transition: all 0.4s ease;
 }
 
-.accordion:hover {
-  height: 100%;
+.accordion__trigger span {
+  color: blueviolet;
 }
 
-.accordion-item__input:checked ~ .accordion-content img {
-  height: inherit;
+.accordion-item__input:checked ~ .accordion__trigger span {
+  color: black;
 }
 
-.accordion-item__input:hover ~ .accordion-content img {
-  height: inherit;
+.accordion__trigger-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.accordion-item__input:checked ~ .accordion__trigger > img {
+  transform: scale(1);
+  transform: rotate(360deg);
+  max-height: 50vh;
+}
+
+.accordion-item__input:checked ~ .accordion__trigger > div > .fa-circle-xmark {
+  transform: rotate(45deg);
+}
+
+.accordion-item__input:checked ~ .accordion__trigger {
+  max-height: 50vh;
 }
 
 .accordion__trigger {
   width: 100%;
-  border-bottom: 0.1em solid black;
+  justify-content: space-between;
+  border-top: 0.1em solid black;
+  max-height: 3vh;
+  transition: all 0.5s ease;
 }
 
-.accordion-content {
-  border: 0.1em solid black;
-  border-top: 0;
-  border-bottom: 0;
-}
-.accordion-content img {
-  height: 0;
+.accordion__trigger:hover {
+  max-height: 50vh;
+  transition: all 0.5s ease;
 }
 
-.accordion-content:hover img {
-  height: inherit;
+.accordion__trigger img {
+  transform: scale(0);
+  transition: all 0.5s ease;
+}
+
+.accordion__trigger:hover img {
+  transform: scale(1);
+}
+
+.accordion-item:hover > div > .fa-circle-xmark {
+  transform: rotate(45deg);
+}
+
+.fa-circle-xmark {
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.accordion:hover > .accordion-item > .accordion__trigger > div > .fa-circle-xmark {
+  visibility: visible;
+}
+
+.accordion__trigger:hover > div > .fa-circle-xmark {
+  transform: rotate(45deg);
 }
