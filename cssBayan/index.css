@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
 html, body {
   box-sizing: border-box;
 }
 
 body {
-  font-family: Impact, 'Trebuchet MS', 'Arial Narrow Bold', sans-serif;
+  font-family: 'Anton', sans-serif;
   background: url(./assets/img/bg-old.jpg) no-repeat;
   background-position: center center;
   background-size:auto;
