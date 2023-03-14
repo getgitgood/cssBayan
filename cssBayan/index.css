@@ -76,9 +76,7 @@ h1 {
   display: none;
 }
 
-.container:hover .accordion__trigger span {
-  color: rgb(61, 34, 13);
-}
+
 .accordion__trigger span {
   color: rgb(124, 94, 39);
 }
@@ -111,7 +109,6 @@ h1 {
   transition: all 0.5s ease;
 }
 
-
 .accordion__trigger {
   width: 100%;
   justify-content: space-between;
@@ -125,27 +122,13 @@ h1 {
   border: none;
 }
 
-.accordion__trigger:hover {
-  cursor: pointer;
-  max-height: 50vh;
-  transition: all 0.5s ease;
-}
-
 .accordion__trigger img {
   transform: scale(0) rotate(360deg);
   transition: all 0.5s ease;
 }
 
-.accordion__trigger:hover img {
-  transform: scale(1) rotate(-360deg);
-}
-
 .accordion-item__input:active ~ .accordion__trigger > .accordion__trigger-title span {
   color: rgb(220, 156, 29);
-}
-
-.accordion-item:hover > .accordion__trigger-title > .plus-icon {
-  transform: rotate(45deg);
 }
 
 .plus-icon {
@@ -159,13 +142,19 @@ h1 {
   transition: all 0.5s ease;
 }
 
+.accordion__trigger:hover > .accordion__trigger-title > .plus-icon {
+  transform: rotate(45deg)
+}
+
 .accordion:hover > .accordion-item > .accordion__trigger > .accordion__trigger-title > .plus-icon {
   opacity: 1;
 }
 
-.accordion__trigger:hover > .accordion__trigger-title > .plus-icon {
-  transform: rotate(45deg)
+.accordion-item:hover > .accordion__trigger-title > .plus-icon {
+  transform: rotate(45deg);
 }
+
+
 
 .plus-icon {
   font-size: 1em;
@@ -201,19 +190,22 @@ h1 {
   aspect-ratio: 1 / 2;
 }
 
+
 /* ---------media queries goes from here----- */
 
-@media (hover: none) and (pointer: coarse) {
-  .accordion__trigger:hover img {
-    pointer-events: none;
-  }
-  
-  .accordion-item__input:checked ~ .accordion__trigger > img {
-    transform: scale(1) rotate(-360deg);
-  }
-
+@media (hover: hover){
   .container:hover .accordion__trigger span {
     color: rgb(61, 34, 13);
+  }
+
+  .accordion__trigger:hover {
+    cursor: pointer;
+    max-height: 50vh;
+    transition: all 0.5s ease;
+  }
+
+  .accordion__trigger:hover img {
+    transform: scale(1) rotate(-360deg);
   }
 }
 
@@ -225,7 +217,9 @@ h1 {
   .trigger-content {
     font-size: 1em;
   }
-
+  .plus-icon {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 1190px) and (max-height: 830px){
@@ -256,7 +250,7 @@ h1 {
   }
 
   .main {
-    max-width: 80%;
+    max-width: 70%;
   }
   
   .footer-container {
