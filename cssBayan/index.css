@@ -3,7 +3,7 @@ html, body {
 }
 
 body {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, 'Trebuchet MS', 'Arial Narrow Bold', sans-serif;
   background: url(./assets/img/bg-old.jpg) no-repeat;
   background-position: center center;
   background-size:auto;
