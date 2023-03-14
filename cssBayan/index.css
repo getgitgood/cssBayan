@@ -5,29 +5,40 @@ html, body {
 body {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   background: url(./assets/img/bg-old.jpg) no-repeat;
+  background-position: center center;
+  background-size:auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  background-attachment: fixed;
   overflow: hidden;
 }
 
 .container {
   margin: 0 auto;
   display: flex;
-  max-width: 50%;
+  
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   height: 74vh;
-  padding: 5em;
+  
 
   background-color: rgba(218, 165, 32, 0.3);
   
 }
 
+.main {
+  padding: 0;
+  max-width: 45%;
+}
+
 img {
   display: block;
   margin: 0 auto;
-  max-width: 70%;
-  transition: all 0.5 ease;
+  transition: all 0.5s ease;
 }
 
 h1 {
@@ -40,19 +51,29 @@ h1 {
 }
 
 .accordion {
-  width: 80%;
+  min-width: 80%;
+  padding: 1em 0;
+}
+
+.accordion__trigger-title ~ span {
+  font-size: 1.5em;
+  transition: all 0.5s ease-in-out;
+}
+
+.accordion__trigger-title span {
+  transition: all 0.2s ease-in-out;
 }
 
 .accordion-item {
   display: flex;
   justify-content: space-between;
   overflow: hidden;
-  transition: all 0.8s ease-in-out;
+  transition: all 0.5s ease-in-out;
   font-size: 1.5em;
 }
 
 .accordion-item__input {
-  visibility: hidden;
+  display: none;
 }
 
 .container:hover .accordion__trigger span {
@@ -62,23 +83,26 @@ h1 {
   color: rgb(124, 94, 39);
 }
 
-.accordion-item__input:checked ~ .accordion__trigger span {
+.accordion-item__input:checked ~ .accordion__trigger-title ~ span {
   color: rgb(61, 34, 13);
 }
 
 .accordion__trigger-title {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1em;
+  padding-top: 0.5em;
+
+  transition: all 0.5s ease-in-out;
 }
 
 .accordion-item__input:checked ~ .accordion__trigger > img {
-  transform: scale(1);
-  transform: rotate(360deg);
-  max-height: 50vh;
+  transform: rotate(360deg) scale(1);
+  max-height: 100%;
 }
 
-.accordion-item__input:checked ~ .accordion__trigger > div > .fa-circle-xmark {
+.accordion-item__input:checked ~ .accordion__trigger > .accordion__trigger-title > .plus-icon {
   transform: rotate(45deg);
 }
 
@@ -87,13 +111,18 @@ h1 {
   transition: all 0.5s ease;
 }
 
+
 .accordion__trigger {
   width: 100%;
   justify-content: space-between;
   border-top: 0.1em dashed black;
   padding-bottom: 1em;
   max-height: 3vh;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
+}
+
+.accordion-item:first-child .accordion__trigger {
+  border: none;
 }
 
 .accordion__trigger:hover {
@@ -103,46 +132,53 @@ h1 {
 }
 
 .accordion__trigger img {
-  transform: scale(0);
+  transform: scale(0) rotate(360deg);
   transition: all 0.5s ease;
 }
 
 .accordion__trigger:hover img {
-  transform: scale(1);
+  transform: scale(1) rotate(-360deg);
 }
 
-.accordion-item__input:active ~ .accordion__trigger > div span {
+.accordion-item__input:active ~ .accordion__trigger > .accordion__trigger-title span {
   color: rgb(220, 156, 29);
 }
 
-.accordion-item__input:active ~ .accordion__trigger > div .fa-circle-xmark {
-  color: rgb(220, 156, 29);
-}
-
-.accordion-item:hover > div > .fa-circle-xmark {
+.accordion-item:hover > .accordion__trigger-title > .plus-icon {
   transform: rotate(45deg);
 }
 
-.fa-circle-xmark {
-  visibility: hidden;
-  transition: all 0.3s ease;
+.plus-icon {
+  display: block;
+  background: url(./assets/img/plus.png) no-repeat;
+  background-size: 100%;
+  display: block;
+  width: 1em;
+  height: 1em;
+  opacity: 0;
+  transition: all 0.5s ease;
 }
 
-.accordion:hover > .accordion-item > .accordion__trigger > div > .fa-circle-xmark {
-  visibility: visible;
+.accordion:hover > .accordion-item > .accordion__trigger > .accordion__trigger-title > .plus-icon {
+  opacity: 1;
 }
 
-.accordion__trigger:hover > div > .fa-circle-xmark {
-  transform: rotate(45deg);
+.accordion__trigger:hover > .accordion__trigger-title > .plus-icon {
+  transform: rotate(45deg)
+}
+
+.plus-icon {
+  font-size: 1em;
+  transition: all 0.5s ease-in-out;
 }
 
 .footer-container {
   max-width: 100%;
   height: fit-content;
   flex-direction: row;
-  justify-content: space-evenly;
-  margin-top: 1em;
-  padding: 5em;
+  justify-content:space-around;
+  align-items:flex-end;
+  padding: 1em;
   padding-top: 1em;
 }
 
@@ -150,53 +186,149 @@ h1 {
   background: url(./assets/img/rs_school_js.svg) no-repeat;
   height: 2em;
   width: 5em;
+  aspect-ratio: 1 / 2;
+}
+
+.year-text {
+  text-align: center;
 }
 
 .github-logo {
   background: url(./assets/img/github-mark.svg) no-repeat;
   background-size: 100%;
-  height: 2.5em;
-  width: 2.5em;
+  height: 2em;
+  width: 2em;
+  aspect-ratio: 1 / 2;
 }
 
-@media only screen and (min-width : 300px) {
-  h1 {
-    font-size: 1em;
+/* ---------media queries goes from here----- */
+
+@media (hover: none) and (pointer: coarse) {
+  .accordion__trigger:hover img {
+    transform: none;
+  }
+  .accordion-item__input:checked ~ .accordion__trigger > img {
+    transform: scale(1) rotate(-360deg);
   }
 
-  span {
-    font-size: 0.6em;
-  }
-
-  .container.main {
-    min-width: 80%;
-    padding: 0;
-  }
-
-  .container.footer-container {
-    font-size: 0.6em;
+  .container:hover .accordion__trigger span {
+    color: rgb(61, 34, 13);
   }
 }
 
-@media only screen and (min-height : 820px) {
-  h1 {
-    font-size: 1.5em;
-  }
-
-  span {
-    font-size: 1em;
-  }
-  .container.footer-container {
-    padding-top: 5em;
-    font-size: 1em;
-  }
-}
-@media only screen and (min-height : 1080px) {
+@media (max-width: 1920px) and (max-height : 1120px) {
   h1 {
     font-size: 2em;
   }
 
-  span {
-    font-size: 1.5em;
+  .trigger-content {
+    font-size: 1em;
+  }
+
+}
+
+@media (max-width: 1190px) and (max-height: 830px){
+  h1 {
+    font-size: 1.3em;
+  }
+
+  .trigger-content, .plus-icon {
+    font-size: 1em;
+  }
+
+}
+
+
+@media (max-height: 760px), (max-width: 1012px) {
+  h1 {
+    font-size: 1em;
+  }
+  .trigger-content {
+    font-size: 0.8em;
+  }
+
+  .plus-icon {
+    font-size: 0.8em;
+  }
+  img {
+    max-width: 30%;
+  }
+
+  .main {
+    max-width: 80%;
+  }
+  
+  .footer-container {
+    font-size: 0.8em;
+  }
+
+}
+
+@media (min-height: 696px) {
+  img {
+    max-width: 80%;
+  }
+}
+@media (max-width: 400px) and (max-height: 750px){
+  .trigger-content, .plus-icon {
+    font-size: 0.6em;
+  }
+
+  .accordion__trigger-title {
+    padding: 0.3em;
+  }
+
+  .accordion__trigger {
+    max-width: 70%;
+  }
+
+  .accordion-item {
+    justify-content: center;
+  }
+  .main {
+    max-width: 80%;
+  }
+
+  img {
+    max-width: 80%;
+  }
+
+  .footer-container {
+    max-height: 10%;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 600px) {
+  .main {
+    min-height: 50%;
+  }
+  
+  h1 {
+    font-size: 0.7em;
+  }
+
+  .footer-container {
+    font-size: 0.6em;
+  }
+
+  .main::-webkit-scrollbar {
+    display: none;
+  }
+
+  .plus-icon {
+    font-size: 0.5em;
+  }
+
+  .accordion__trigger-title {
+    padding: 0;
+  }
+  .accordion__trigger {
+    padding: 0.3em;
+  }
+  .trigger-content {
+    font-size: 0.6em;
+  }
+  img {
+    max-width: 20%;
   }
 }
