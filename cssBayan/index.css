@@ -206,7 +206,9 @@ h1 {
 @media (hover: none) and (pointer: coarse) {
   .accordion__trigger:hover img {
     transform: none;
+    max-height: 0;
   }
+  
   .accordion-item__input:checked ~ .accordion__trigger > img {
     transform: scale(1) rotate(-360deg);
   }
